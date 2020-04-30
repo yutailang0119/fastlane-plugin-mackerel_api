@@ -67,14 +67,6 @@ module Fastlane
         "Call a Mackerel API endpoint and get the resulting JSON response"
       end
 
-      def self.authors
-        ["yutailang0119"]
-      end
-
-      def self.return_value
-        # If your method provides a return value, you can describe here what it does
-      end
-
       def self.details
         [
           "Calls any Mackerel API endpoint.",
