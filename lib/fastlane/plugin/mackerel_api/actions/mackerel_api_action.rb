@@ -21,8 +21,10 @@ module Fastlane
       end
 
       def self.details
-        # Optional:
-        "Calls any Mackerel API endpoint."
+        [
+          "Calls any Mackerel API endpoint.",
+          "Documentation: [https://mackerel.io/api-docs/](https://mackerel.io/api-docs/)."
+        ].join("\n")
       end
 
       def self.available_options
@@ -35,12 +37,16 @@ module Fastlane
         ]
       end
 
+      def self.authors
+        ["yutailang0119"]
+      end
+
       def self.is_supported?(platform)
-        # Adjust this if your plugin only works for a particular platform (iOS vs. Android, for example)
-        # See: https://docs.fastlane.tools/advanced/#control-configuration-by-lane-and-by-platform
-        #
-        # [:ios, :mac, :android].include?(platform)
         true
+      end
+
+      def category
+        :source_control
       end
     end
   end
