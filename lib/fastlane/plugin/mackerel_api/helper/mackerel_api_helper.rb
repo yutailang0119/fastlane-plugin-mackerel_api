@@ -4,7 +4,7 @@ module Fastlane
       def construct_headers(api_key, overrides)
         require 'base64'
         headers = { 'User-Agent' => 'fastlane-mackerel_api' }
-        headers['X-Api-Key'] = "#{Base64.strict_encode64(api_key)}" if api_key
+        headers['X-Api-Key'] = Base64.strict_encode64(api_key).to_s if api_key
         headers.merge(overrides || {})
       end
 
