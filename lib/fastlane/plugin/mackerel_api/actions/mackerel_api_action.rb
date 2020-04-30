@@ -3,6 +3,11 @@ require_relative '../helper/mackerel_api_helper'
 
 module Fastlane
   module Actions
+    module SharedValues
+      MACKEREL_API_STATUS_CODE = :MACKEREL_API_STATUS_CODE
+      MACKEREL_API_RESPONSE = :MACKEREL_API_RESPONSE
+      MACKEREL_API_JSON = :MACKEREL_API_JSON
+    end
 
     class MackerelApiAction < Action
       def self.run(params)
@@ -50,6 +55,10 @@ module Fastlane
             UI.user_error!("GitHub responded with #{status_code}\n---\n#{response.body}")
           end
         end
+
+        Actions.lane_context[SharedValues::MACKEREL_API_STATUS_CODE] = result[:status]
+        Actions.lane_context[SharedValues::MACKEREL_API_RESPONSE] = result[:body]
+        Actions.lane_context[SharedValues::MACKEREL_API_JSON] = result[:json]
 
         return result
       end
@@ -139,6 +148,14 @@ module Fastlane
                                        type: Boolean,
                                        default_value: true,
                                        optional: true)
+        ]
+      end
+
+      def self.output
+        [
+          ['MACKEREL_API_STATUS_CODE', 'The status code returned from the request'],
+          ['MACKEREL_API_RESPONSE', 'The full response body'],
+          ['MACKEREL_API_JSON', 'The parsed json returned from GitHub']
         ]
       end
 
