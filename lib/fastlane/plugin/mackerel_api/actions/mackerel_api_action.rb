@@ -11,7 +11,6 @@ module Fastlane
 
     class MackerelApiAction < Action
       def self.run(params)
-        UI.message("The mackerel_api plugin is working!")
         require 'json'
 
         http_method = (params[:http_method] || 'GET').to_s.upcase
