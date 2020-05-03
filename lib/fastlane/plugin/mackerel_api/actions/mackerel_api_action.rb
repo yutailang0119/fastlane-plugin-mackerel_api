@@ -51,7 +51,7 @@ module Fastlane
             UI.error("---")
             UI.error("Response:")
             UI.error(response.body)
-            UI.user_error!("GitHub responded with #{status_code}\n---\n#{response.body}")
+            UI.user_error!("Mackerel responded with #{status_code}\n---\n#{response.body}")
           end
         end
 
@@ -146,7 +146,7 @@ module Fastlane
         [
           ['MACKEREL_API_STATUS_CODE', 'The status code returned from the request'],
           ['MACKEREL_API_RESPONSE', 'The full response body'],
-          ['MACKEREL_API_JSON', 'The parsed json returned from GitHub']
+          ['MACKEREL_API_JSON', 'The parsed json returned from Mackerel']
         ]
       end
 
