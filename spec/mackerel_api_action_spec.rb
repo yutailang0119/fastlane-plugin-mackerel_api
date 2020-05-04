@@ -83,4 +83,20 @@ describe Fastlane::Actions::MackerelApiAction do
       expect(body).to eq("[\"Foo\",\"Bar\"]")
     end
   end
+
+  describe '#MackerelApiHelper.parse_json' do
+    it 'parse json' do
+      raw_json = "{\"Foo\":\"foo\",\"Bar\":\"bar\"}"
+      json = Fastlane::Helper::MackerelApiHelper.parse_json(raw_json)
+
+      expect(json).to eq({ 'Foo' => 'foo', 'Bar' => 'bar' })
+    end
+
+    it 'failure parse json' do
+      raw_json = ''
+      json = Fastlane::Helper::MackerelApiHelper.parse_json(raw_json)
+
+      expect(json).to eq(nil)
+    end
+  end
 end
