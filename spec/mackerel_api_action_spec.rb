@@ -23,13 +23,13 @@ describe Fastlane::Actions::MackerelApiAction do
 
     it 'construct headers with overrides' do
       api_key = random_identifier(30)
-      overrides = { 'Foo' => 'bar' }
+      overrides = { 'Foo' => 'foo' }
       headers = Fastlane::Helper::MackerelApiHelper.construct_headers(api_key, overrides)
 
       expect(headers).to eq({
         'User-Agent' => 'fastlane-mackerel_api',
         'X-Api-Key' => api_key,
-        'Foo' => 'bar'
+        'Foo' => 'foo'
       })
     end
 
@@ -58,6 +58,29 @@ describe Fastlane::Actions::MackerelApiAction do
       url = Fastlane::Helper::MackerelApiHelper.construct_url(server_url, path, full_url)
 
       expect(url).to eq(full_url)
+    end
+  end
+
+  describe '#MackerelApiHelper.construct_body' do
+    it 'construct body with raw body' do
+      raw_body = "{\"Foo\":\"foo\",\"Bar\":\"bar\"}"
+      body = Fastlane::Helper::MackerelApiHelper.construct_body(nil, raw_body)
+
+      expect(body).to eq("{\"Foo\":\"foo\",\"Bar\":\"bar\"}")
+    end
+
+    it 'construct body with Hash' do
+      hash = { 'Foo' => 'foo', 'Bar' => 'bar' }
+      body = Fastlane::Helper::MackerelApiHelper.construct_body(hash, nil)
+
+      expect(body).to eq("{\"Foo\":\"foo\",\"Bar\":\"bar\"}")
+    end
+
+    it 'construct body with Array' do
+      array = ['Foo', 'Bar']
+      body = Fastlane::Helper::MackerelApiHelper.construct_body(array, nil)
+
+      expect(body).to eq("[\"Foo\",\"Bar\"]")
     end
   end
 end
