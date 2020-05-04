@@ -40,4 +40,24 @@ describe Fastlane::Actions::MackerelApiAction do
       Array.new(number) { charset.sample }.join
     end
   end
+
+  describe '#MackerelApiHelper.construct_url' do
+    it 'construct url with server_url & path' do
+      server_url = 'https://api.mackerelio.com'
+      path = 'api/v0/org'
+      full_url = 'https://kcps-mackerel.io/api/v0/services'
+      url = Fastlane::Helper::MackerelApiHelper.construct_url(server_url, path, full_url)
+
+      expect(url).to eq("#{server_url}/#{path}")
+    end
+
+    it 'construct url with full url' do
+      server_url = 'https://api.mackerelio.com'
+      path = nil
+      full_url = 'https://kcps-mackerel.io/api/v0/services'
+      url = Fastlane::Helper::MackerelApiHelper.construct_url(server_url, path, full_url)
+
+      expect(url).to eq(full_url)
+    end
+  end
 end
