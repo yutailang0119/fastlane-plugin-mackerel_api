@@ -59,6 +59,10 @@ describe Fastlane::Actions::MackerelApiAction do
 
       expect(url).to eq(full_url)
     end
+
+    it 'construct url with error' do
+      expect { Fastlane::Helper::MackerelApiHelper.construct_url(nil, nil, nil) }.to raise_error(FastlaneCore::Interface::FastlaneError)
+    end
   end
 
   describe '#MackerelApiHelper.construct_body' do
@@ -81,6 +85,11 @@ describe Fastlane::Actions::MackerelApiAction do
       body = Fastlane::Helper::MackerelApiHelper.construct_body(array, nil)
 
       expect(body).to eq("[\"Foo\",\"Bar\"]")
+    end
+
+    it 'construct body with error' do
+      string = 'foobarpiyo'
+      expect { Fastlane::Helper::MackerelApiHelper.construct_body(string, nil) }.to raise_error(FastlaneCore::Interface::FastlaneError)
     end
   end
 
