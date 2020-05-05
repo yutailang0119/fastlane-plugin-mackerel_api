@@ -19,3 +19,5 @@ jobs:
       run: bundle install
     - name: Run tests
       run: bundle exec rake
+      env:
+        FL_MACKEREL_API_KEY: ${{ secrets.MACKEREL_API_KEY }}
