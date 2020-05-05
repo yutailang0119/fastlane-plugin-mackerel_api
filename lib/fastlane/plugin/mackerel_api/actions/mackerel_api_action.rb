@@ -68,8 +68,9 @@ module Fastlane
 
       def self.details
         [
-          "Calls any Mackerel API endpoint.",
-          "Documentation: [https://mackerel.io/api-docs/](https://mackerel.io/api-docs/)."
+          "Call a [Mackerel](https://mackerel.io) API endpoint and get the resulting JSON response.",
+          "You must provide your Mackerel API key (get one from [Dashboard](https://mackerel.io/my?tab=apikeys)).",
+          "Documentation: [Mackerel API Documents](https://mackerel.io/api-docs)."
         ].join("\n")
       end
 
@@ -85,7 +86,7 @@ module Fastlane
                                        end),
           FastlaneCore::ConfigItem.new(key: :api_key,
                                        env_name: "FL_MACKEREL_API_KEY",
-                                       description: "API Key for Mackerel - generate one at https://mackerel.io/my?tab=apikeys",
+                                       description: "API key for Mackerel - generate one at https://mackerel.io/my?tab=apikeys",
                                        sensitive: true,
                                        code_gen_sensitive: true,
                                        is_string: true,
@@ -152,6 +153,36 @@ module Fastlane
 
       def self.return_value
         "A hash including the HTTP status code (:status), the response body (:body), and if valid JSON has been returned the parsed JSON (:json)."
+      end
+
+      def example_code
+        [
+          'result = mackerel_api(
+          server_url: "https://api.mackerelio.com",
+          api_key: ENV["MACKEREL_API_KEY"],
+          http_method: "POST",
+          path: "api/v0/services",
+          body: { "name": "ExampleService", "memo": "This is an example." }
+        )',
+          '# Alternatively call directly with optional error handling or block usage
+          MackerelApiAction.run(
+            server_url: "https://api.mackerelio.com",
+            api_key: ENV["MACKEREL_API_KEY"],
+            http_method: "POST",
+            path: "api/v0/services",
+            error_handlers: {
+              404 => proc do |result|
+                UI.message("Something went wrong - I couldn\'t find it...")
+              end,
+              \'*\' => proc do |result|
+                UI.message("Handle all error codes other than 404")
+              end
+            }
+          ) do |result|
+            UI.message("JSON returned: #{result[:json]}")
+          end
+        '
+        ]
       end
 
       def self.authors
