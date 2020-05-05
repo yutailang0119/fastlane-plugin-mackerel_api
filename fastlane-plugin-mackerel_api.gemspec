@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.email         = 'muta.yutaro@gmail.com'
 
   spec.summary       = 'Call a Mackerel API endpoint and get the resulting JSON response'
-  # spec.homepage      = "https://github.com/<GITHUB_USERNAME>/fastlane-plugin-mackerel_api"
+  spec.homepage      = "https://github.com/yutailang0119/fastlane-plugin-mackerel_api"
   spec.license       = "MIT"
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
