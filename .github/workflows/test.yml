@@ -1,0 +1,23 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7
+    - name: Install dependencies
+      run: bundle install
+    - name: Run tests
+      run: bundle exec rake
+      env:
+        FL_MACKEREL_API_KEY: ${{ secrets.MACKEREL_API_KEY }}
