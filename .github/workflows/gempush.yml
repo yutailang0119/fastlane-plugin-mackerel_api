@@ -1,13 +1,8 @@
 name: Ruby Gem
 
-# on:
-#   release:
-#     types: created
-
 on:
-  push:
-    branches:
-      - publish-with-action
+  release:
+    types: published
 
 jobs:
   publish:
