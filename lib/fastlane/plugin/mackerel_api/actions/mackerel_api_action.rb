@@ -90,6 +90,7 @@ module Fastlane
                                        sensitive: true,
                                        code_gen_sensitive: true,
                                        is_string: true,
+                                       default_value: ENV["MACKEREL_API_KEY"],
                                        default_value_dynamic: true,
                                        optional: false),
           FastlaneCore::ConfigItem.new(key: :http_method,
