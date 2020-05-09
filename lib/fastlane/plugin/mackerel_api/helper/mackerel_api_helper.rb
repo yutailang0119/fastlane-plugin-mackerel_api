@@ -2,7 +2,10 @@ module Fastlane
   module Helper
     class MackerelApiHelper
       def self.construct_headers(api_key, overrides)
-        headers = { 'User-Agent' => 'fastlane-mackerel_api' }
+        headers = {
+          'User-Agent' => 'fastlane-mackerel_api',
+          'Content-Type' => 'application/json'
+        }
         headers['X-Api-Key'] = api_key if api_key
         headers.merge(overrides || {})
       end

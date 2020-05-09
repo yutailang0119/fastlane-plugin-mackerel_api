@@ -17,6 +17,7 @@ describe Fastlane::Actions::MackerelApiAction do
 
       expect(headers).to eq({
         'User-Agent' => 'fastlane-mackerel_api',
+        'Content-Type' => 'application/json',
         'X-Api-Key' => api_key
       })
     end
@@ -28,6 +29,7 @@ describe Fastlane::Actions::MackerelApiAction do
 
       expect(headers).to eq({
         'User-Agent' => 'fastlane-mackerel_api',
+        'Content-Type' => 'application/json',
         'X-Api-Key' => api_key,
         'Foo' => 'foo'
       })
