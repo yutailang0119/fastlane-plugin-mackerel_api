@@ -47,7 +47,7 @@ module Fastlane
           else
             UI.error("---")
             UI.error("Request failed:\n#{http_method}: #{url}")
-            UI.error("Headers:\n#{headers}")
+            UI.error("Headers:\n#{headers.map { |key, value| key == 'X-Api-Key' ? ['X-Api-Key', '********'] : [key, value] }.to_h}")
             UI.error("---")
             UI.error("Response:")
             UI.error(response.body)
