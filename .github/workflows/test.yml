@@ -21,3 +21,8 @@ jobs:
       run: bundle exec rake
       env:
         FL_MACKEREL_API_KEY: ${{ secrets.MACKEREL_API_KEY }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: test-results
