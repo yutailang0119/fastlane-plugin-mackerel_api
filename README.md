@@ -21,40 +21,6 @@ Documentation: [Mackerel API Documents](https://mackerel.io/api-docs).
 
 Check out the [example `Fastfile`](fastlane/Fastfile) to see how to use this plugin. Try it by cloning the repo, running `fastlane install_plugins` and `bundle exec fastlane test`.
 
-
-### Usage
-
-```ruby
-result = mackerel_api(
-  server_url: "https://api.mackerelio.com",
-  api_key: ENV["MACKEREL_API_KEY"],
-  http_method: "POST",
-  path: "api/v0/services",
-  body: { "name": "ExampleService", "memo": "This is an example." }
-)
-```
-
-```ruby
-# Alternatively call directly with optional error handling or block usage
-MackerelApiAction.run(
-  server_url: "https://api.mackerelio.com",
-  api_key: ENV["MACKEREL_API_KEY"],
-  http_method: "POST",
-  path: "api/v0/services",
-  body: { "name": "ExampleService", "memo": "This is an example." },
-  error_handlers: {
-    404 => proc do |result|
-      UI.message("Something went wrong - I couldn\'t find it...")
-    end,
-    '*' => proc do |result|
-      UI.message("Handle all error codes other than 404")
-    end
-  }
-) do |result|
-    UI.message("JSON returned: #{result[:json]}")
-end
-```
-
 ## Run tests for this plugin
 
 To run both the tests, and code style validation, run
