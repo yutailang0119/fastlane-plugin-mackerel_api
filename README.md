@@ -1,7 +1,7 @@
 # mackerel_api plugin
 
 [![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-mackerel_api)
-![Test](https://github.com/yutailang0119/fastlane-plugin-mackerel_api/workflows/Test/badge.svg)
+[![Test](https://github.com/yutailang0119/fastlane-plugin-mackerel_api/workflows/Test/badge.svg)](https://github.com/yutailang0119/fastlane-plugin-mackerel_api/actions?query=branch%3Amaster+workflow%3ATest)
 
 ## Getting Started
 
