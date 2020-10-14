@@ -159,12 +159,12 @@ module Fastlane
       def example_code
         [
           'result = mackerel_api(
-          server_url: "https://api.mackerelio.com",
-          api_key: ENV["MACKEREL_API_KEY"],
-          http_method: "POST",
-          path: "api/v0/services",
-          body: { "name": "ExampleService", "memo": "This is an example." }
-        )',
+            server_url: "https://api.mackerelio.com",
+            api_key: ENV["MACKEREL_API_KEY"],
+            http_method: "POST",
+            path: "api/v0/services",
+            body: { "name": "ExampleService", "memo": "This is an example." }
+          )',
           '# Alternatively call directly with optional error handling or block usage
           MackerelApiAction.run(
             server_url: "https://api.mackerelio.com",
@@ -182,7 +182,7 @@ module Fastlane
           ) do |result|
             UI.message("JSON returned: #{result[:json]}")
           end
-        '
+          '
         ]
       end
 
