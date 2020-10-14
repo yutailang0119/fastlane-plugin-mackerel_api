@@ -8,6 +8,23 @@ describe Fastlane::Actions::MackerelApiAction do
       expect(result[:body]["name"].nil?).to be(false)
       expect(result[:json].key?("name")).to be(true)
     end
+
+    it 'call Mackerel API with error_handlers' do
+      expect do
+        Fastlane::Actions::MackerelApiAction.run(server_url: 'https://api.mackerelio.com',
+          path: 'api/v0/org',
+          api_key: "",
+          error_handlers: {
+            401 => proc do |response|
+              FastlaneCore::UI.error("UnAuthentication")
+              FastlaneCore::UI.user_error!("Mackerel responded with #{response[:status]}\n---\n#{response[:body]}")
+            end,
+            '*' => proc do |response|
+              FastlaneCore::UI.message("Handle all error codes other")
+            end
+          })
+      end.to raise_error(FastlaneCore::Interface::FastlaneError)
+    end
   end
 
   describe '#MackerelApiHelper.construct_headers' do
