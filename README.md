@@ -21,6 +21,8 @@ Documentation: [Mackerel API Documents](https://mackerel.io/api-docs).
 
 Check out the [example `Fastfile`](fastlane/Fastfile) to see how to use this plugin. Try it by cloning the repo, running `fastlane install_plugins` and `bundle exec fastlane test`.
 
+See [MackerelApiAction](lib/fastlane/plugin/mackerel_api/actions/mackerel_api_action.rb).example_code for more usage.
+
 ## Run tests for this plugin
 
 To run both the tests, and code style validation, run
